@@ -1,4 +1,11 @@
+/* ********************************************************************************************* */
+/*                                    Oleksandr Kolesnikov                                       */
+/*                                           © 2025                                              */
+/* ********************************************************************************************* */
+
 import 'package:flutter/material.dart';
+
+import 'core/constants/app_strings.dart';
 
 void main() {
   runApp(const CarsApp());
@@ -10,18 +17,17 @@ class CarsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CarOnSale Challenge',
+      title: AppStrings.appName,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const HomePage(title: 'CarOnSale Flutter Coding Challenge'),
+      home: const HomePage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
-  final String title;
+  const HomePage({super.key});
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -40,7 +46,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        title: Text(AppStrings.homeScreenTitle),
       ),
       body: Center(
         child: Column(
