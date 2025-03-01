@@ -17,5 +17,6 @@ class AppStrings {
   static const String homeCarUuid = 'UUID';
   static const String homeFeedbackPositive = 'Recommended by other users';
   static const String homeFeedbackNegative = 'Not recommended by other users';
+  static const String homeVehicleSelectionTitle = 'Search results';
 }
 

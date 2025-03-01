@@ -4,6 +4,7 @@
 /* ********************************************************************************************* */
 
 import 'package:carsonsale/features/home/presentation/widgets/home_car_info_widget.dart';
+import 'package:carsonsale/features/home/presentation/widgets/home_car_selection_widget.dart';
 import 'package:carsonsale/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,10 @@ class HomePage extends StatelessWidget {
               model: "foo",
               uuid: "foo",
               feedback: true,
+            ),
+            HomeCarSelectionWidget(
+              carNames: ["Ford", "Mercedes", "BMW", "Opel", "Audi"],
+              similarityScores: [5, 4, 3, 2, 1],
             ),
           ],
         ),
