@@ -9,5 +9,7 @@ class AppStrings {
   // Login screen
 
   // Home screen
-  static const String homeScreenTitle = 'CarOnSale Flutter Coding Challenge'; 
+  static const String homeScreenTitle = 'CarOnSale Flutter Coding Challenge';
+  static const String homeSearchHint = 'Enter VIN code';
+  static const String homeSearchButton = 'Search';
 }
