@@ -3,6 +3,7 @@
 /*                                           © 2025                                              */
 /* ********************************************************************************************* */
 
+import 'package:carsonsale/features/home/presentation/widgets/home_car_info_widget.dart';
 import 'package:carsonsale/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -19,10 +20,15 @@ class HomePage extends StatelessWidget {
         title: Text(AppStrings.homeScreenTitle),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: ListView(
           children: <Widget>[
             HomeSearchBar(),
+            HomeCarInfoWidget(
+              price: 9999.99,
+              model: "foo",
+              uuid: "foo",
+              feedback: true,
+            ),
           ],
         ),
       ),
