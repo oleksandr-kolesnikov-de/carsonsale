@@ -3,7 +3,7 @@
 /*                                           © 2025                                              */
 /* ********************************************************************************************* */
 
-import 'package:carsonsale/core/styles/app_borders.dart';
+import 'package:carsonsale/core/styles/app_border_radius.dart';
 import 'package:carsonsale/core/styles/app_icon_sizes.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +15,9 @@ class HomeSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context); 
+    final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.medium),
+      padding: const EdgeInsets.all(AppSpacing.medium),
       child: Row(
         children: [
           // Search Input Field
@@ -27,7 +27,7 @@ class HomeSearchBar extends StatelessWidget {
                 hintText: AppStrings.homeSearchHint,
                 prefixIcon: Icon(Icons.search, color: theme.iconTheme.color),
                 border: OutlineInputBorder(
-                  borderRadius: AppBorders.roundedMedium,
+                  borderRadius: AppBorderRadius.roundedMedium,
                   borderSide: BorderSide(color: theme.primaryColor),
                 ),
               ),
@@ -38,13 +38,17 @@ class HomeSearchBar extends StatelessWidget {
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-              backgroundColor: theme.primaryColor, 
+              backgroundColor: theme.primaryColor,
               shape: RoundedRectangleBorder(
-                borderRadius: AppBorders.roundedMedium,
+                borderRadius: AppBorderRadius.roundedMedium,
               ),
               padding: const EdgeInsets.all(AppSpacing.small),
             ),
-            child: Icon(Icons.arrow_forward_ios, color: theme.colorScheme.onPrimary, size: AppIconSizes.large)
+            child: Icon(
+              Icons.arrow_forward_ios,
+              color: theme.colorScheme.onPrimary,
+              size: AppIconSizes.large,
+            ),
           ),
         ],
       ),
