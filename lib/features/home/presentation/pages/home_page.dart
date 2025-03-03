@@ -30,11 +30,13 @@ class HomePage extends StatelessWidget {
             child: ListView(
               children: <Widget>[
                 HomeSearchBar(),
-                if (state is HomeLoading) Center(child: CircularProgressIndicator()),
-                if (state is HomeInitial) Padding(
-                  padding: const EdgeInsets.all(AppSpacing.medium),
-                  child: Text(AppStrings.homeStartString),
-                ),
+                if (state is HomeLoading)
+                  Center(child: CircularProgressIndicator()),
+                if (state is HomeInitial)
+                  Padding(
+                    padding: const EdgeInsets.all(AppSpacing.medium),
+                    child: Text(AppStrings.homeStartString),
+                  ),
                 if (state is HomeLoaded)
                   HomeCarInfoWidget(
                     price: state.carInfo.price,
@@ -48,10 +50,7 @@ class HomePage extends StatelessWidget {
                     similarityScores: [5, 4, 3, 2, 1],
                   ),
                 if (state is HomeError)
-                  HomeErrorWidget(
-                    errorMessage:
-                        "An unexpected error occurred while processing your request",
-                  ),
+                  HomeErrorWidget(errorMessage: state.failure.message ?? ""),
               ],
             ),
           );
