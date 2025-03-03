@@ -20,5 +20,10 @@ class AppStrings {
   static const String homeVehicleSelectionTitle = 'Search results';
   static const String homeErrorRetry = 'Retry';
   static const String homeStartString = "Please enter a search query";
+
+  // Error messages
+  static const String errorUnknown = 'Unknown error';
+  static const String errorMaxRetries = 'Server error. Max number of retry attempt was reached';
+  static const String errorTitle = 'An error occurred while processing your request: ';
 }
 
