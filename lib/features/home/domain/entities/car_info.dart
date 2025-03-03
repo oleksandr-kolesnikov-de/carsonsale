@@ -6,6 +6,7 @@
 import 'package:carsonsale/features/home/domain/entities/base_car.dart';
 
 class CarInfo extends BaseCarInfo {
+
   final String feedback;
   final DateTime valuatedAt;
   final DateTime requestedAt;
@@ -16,6 +17,7 @@ class CarInfo extends BaseCarInfo {
   final String fkUuidAuction;
   final String origin;
   final String estimationRequestId;
+  final String fkSellerUser;
 
   CarInfo({
     required super.make,
@@ -31,5 +33,6 @@ class CarInfo extends BaseCarInfo {
     required this.fkUuidAuction,
     required this.origin,
     required this.estimationRequestId,
+    required this.fkSellerUser,
   });
 }

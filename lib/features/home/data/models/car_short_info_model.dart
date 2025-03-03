@@ -5,19 +5,13 @@
 
 import '../../domain/entities/car_short_info.dart';
 
-class CarShortInfoModel {
-  final String make;
-  final String model;
-  final String externalId;
-  final String containerName;
-  final int similarity;
-
+class CarShortInfoModel extends CarShortInfo {
   CarShortInfoModel({
-    required this.make,
-    required this.model,
-    required this.externalId,
-    required this.containerName,
-    required this.similarity,
+    required super.make,
+    required super.model,
+    required super.externalId,
+    required super.containerName,
+    required super.similarity,
   });
 
   factory CarShortInfoModel.fromMap(Map<String, dynamic> map) {
