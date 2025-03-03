@@ -19,5 +19,6 @@ class AppStrings {
   static const String homeFeedbackNegative = 'Not recommended by other users';
   static const String homeVehicleSelectionTitle = 'Search results';
   static const String homeErrorRetry = 'Retry';
+  static const String homeStartString = "Please enter a search query";
 }
 
