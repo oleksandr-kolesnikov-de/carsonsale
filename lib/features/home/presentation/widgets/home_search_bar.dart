@@ -5,7 +5,9 @@
 
 import 'package:carsonsale/core/styles/app_border_radius.dart';
 import 'package:carsonsale/core/styles/app_icon_sizes.dart';
+import 'package:carsonsale/features/home/presentation/bloc/home_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/styles/app_spacing.dart';
@@ -36,7 +38,9 @@ class HomeSearchBar extends StatelessWidget {
           const SizedBox(width: AppSpacing.small),
           // Search Button
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              context.read<HomeBloc>().add(const HomeSearchCarsEvent(""));
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.primaryColor,
               shape: RoundedRectangleBorder(
