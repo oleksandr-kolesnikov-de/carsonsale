@@ -11,3 +11,12 @@ abstract class HomeEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class HomeSearchCarsEvent extends HomeEvent {
+  final String query;
+
+  const HomeSearchCarsEvent(this.query);
+
+  @override
+  List<Object> get props => [query];
+}
