@@ -10,6 +10,7 @@ import 'package:carsonsale/features/home/domain/repositories/car_repository.dart
 import 'package:carsonsale/features/home/domain/usecases/search_car.dart';
 import 'package:carsonsale/features/home/presentation/bloc/home_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../mock/server.dart';
@@ -24,12 +25,13 @@ Future<void> init() async {
   final serverClient = CosChallenge.httpClient;
   core.registerLazySingleton(() => serverClient);
 
-  core.registerLazySingleton(() => ExchangeCarRemoteMockImpl(core()));
-
   // External
  
   final sharedPreferences = await SharedPreferences.getInstance();
   core.registerLazySingleton(() => sharedPreferences);
+
+  // hive
+  Hive.init("");
 
   // BLoC
 
@@ -50,4 +52,5 @@ Future<void> init() async {
   core.registerLazySingleton<ExchangeCarRemote>(
     () => ExchangeCarRemoteMockImpl(core()),
   );
+  core.registerLazySingleton(() => ExchangeCarRemoteMockImpl(core()));
 }
