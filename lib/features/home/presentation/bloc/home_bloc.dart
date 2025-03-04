@@ -1,3 +1,8 @@
+/* ********************************************************************************************* */
+/*                                    Oleksandr Kolesnikov                                       */
+/*                                           © 2025                                              */
+/* ********************************************************************************************* */
+
 import 'package:carsonsale/features/home/domain/usecases/search_car.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

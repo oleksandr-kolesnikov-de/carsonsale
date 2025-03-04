@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
           return Center(
             child: ListView(
               children: <Widget>[
-                HomeSearchBar(),
+                HomeSearchBar(isLoading: state is HomeLoading),
                 if (state is HomeLoading)
                   Center(child: CircularProgressIndicator()),
                 if (state is HomeInitial)
@@ -46,8 +46,12 @@ class HomePage extends StatelessWidget {
                   ),
                 if (state is HomeLoadedList)
                   HomeCarSelectionWidget(
-                    carNames: [for (var car in state.carShortInfoList) car.model],
-                    similarityScores: [for (var car in state.carShortInfoList) car.similarity],
+                    carNames: [
+                      for (var car in state.carShortInfoList) car.model,
+                    ],
+                    similarityScores: [
+                      for (var car in state.carShortInfoList) car.similarity,
+                    ],
                   ),
                 if (state is HomeError)
                   HomeErrorWidget(errorMessage: state.failure.message ?? ""),

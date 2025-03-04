@@ -13,7 +13,8 @@ import '../../../../core/constants/app_strings.dart';
 import '../../../../core/styles/app_spacing.dart';
 
 class HomeSearchBar extends StatefulWidget {
-  const HomeSearchBar({super.key});
+  final bool isLoading;
+  const HomeSearchBar({super.key, required this.isLoading});
 
   @override
   State<HomeSearchBar> createState() => _HomeSearchBarState();
@@ -58,9 +59,14 @@ class _HomeSearchBarState extends State<HomeSearchBar> {
           const SizedBox(width: AppSpacing.small),
           // Search Button
           ElevatedButton(
-            onPressed: () {
-              context.read<HomeBloc>().add(HomeSearchCarsEvent(controller.text));
-            },
+            onPressed:
+                (widget.isLoading)
+                    ? null
+                    : () {
+                      context.read<HomeBloc>().add(
+                        HomeSearchCarsEvent(controller.text),
+                      );
+                    },
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.primaryColor,
               shape: RoundedRectangleBorder(
