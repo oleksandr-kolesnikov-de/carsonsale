@@ -12,13 +12,22 @@ import 'package:carsonsale/features/home/presentation/bloc/home_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../mock/server.dart';
+
 final core = GetIt.instance;
 
 Future configureCore() async => await init();
 
 Future<void> init() async {
-  // External
 
+  // Mocked server
+  final serverClient = CosChallenge.httpClient;
+  core.registerLazySingleton(() => serverClient);
+
+  core.registerLazySingleton(() => ExchangeCarRemoteMockImpl(core()));
+
+  // External
+ 
   final sharedPreferences = await SharedPreferences.getInstance();
   core.registerLazySingleton(() => sharedPreferences);
 
@@ -39,6 +48,6 @@ Future<void> init() async {
 
   // DataSources
   core.registerLazySingleton<ExchangeCarRemote>(
-    () => ExchangeCarRemoteMockImpl(),
+    () => ExchangeCarRemoteMockImpl(core()),
   );
 }

@@ -19,10 +19,8 @@ import '../../../../core/error/failure.dart';
 import 'exchange_car_remote.dart';
 
 class ExchangeCarRemoteMockImpl extends ExchangeCarRemote {
-  //final CosChallenge cosChallenge;
-  ExchangeCarRemoteMockImpl(
-    //required this.cosChallenge,
-  );
+  final BaseClient serverClient;
+  ExchangeCarRemoteMockImpl(this.serverClient);
 
   @override
   Future<Either<Failure, Map<String, dynamic>>> searchCar(
