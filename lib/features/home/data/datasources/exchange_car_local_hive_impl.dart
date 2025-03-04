@@ -9,6 +9,7 @@ import 'dart:async';
 import 'package:carsonsale/features/home/data/datasources/exchange_car_local.dart';
 import 'package:dartz/dartz.dart';
 import 'package:hive/hive.dart';
+import '../../../../core/config/config.dart';
 import '../../../../core/error/failure.dart';
 
 class ExchangeCarLocalHiveImpl extends ExchangeCarLocal {
@@ -20,7 +21,7 @@ class ExchangeCarLocalHiveImpl extends ExchangeCarLocal {
     required Map<String, dynamic> car,
   }) async {
     try {
-      var box = await Hive.openBox<Map>('cache');
+      var box = await Hive.openBox<Map>(Config.hiveBoxName);
       await box.put(query, car);
     } catch (e) {
       return Left(HiveFailure(message: e.toString()));
@@ -33,7 +34,7 @@ class ExchangeCarLocalHiveImpl extends ExchangeCarLocal {
     required String query,
   }) async {
     try {
-      var box = await Hive.openBox<Map>('cache');
+      var box = await Hive.openBox<Map>(Config.hiveBoxName);
       var car = box.get(query);
       if (car == null) {
         return Right(None());
