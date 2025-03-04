@@ -33,10 +33,14 @@ class ExchangeCarRemoteMockImpl extends ExchangeCarRemote {
           Uri.https(EndPoint.authority, EndPoint.path, {'q': searchQuery}),
           headers: {CosChallenge.user: 'someUserId'},
         );
-        print('Status code: ${response.statusCode} body:\n${response.body}');
+        print("${AppStrings.debugStatusCode}${response.statusCode}");
+        print("${AppStrings.debugBody}:\n${response.body}");
         if ((response.statusCode == 200) || (response.statusCode == 300)) {
           final data = jsonDecode(_patchServerResponse(response.body));
-          return Right({'data': data, 'statusCode': response.statusCode});
+          return Right({
+            Config.dataKey: data,
+            Config.statusCodeKey: response.statusCode,
+          });
         } else {
           attempt++;
           if (attempt >= Config.maxRetries) {
