@@ -46,8 +46,8 @@ class HomePage extends StatelessWidget {
                   ),
                 if (state is HomeLoadedList)
                   HomeCarSelectionWidget(
-                    carNames: ["Ford", "Mercedes", "BMW", "Opel", "Audi"],
-                    similarityScores: [5, 4, 3, 2, 1],
+                    carNames: [for (var car in state.carShortInfoList) car.model],
+                    similarityScores: [for (var car in state.carShortInfoList) car.similarity],
                   ),
                 if (state is HomeError)
                   HomeErrorWidget(errorMessage: state.failure.message ?? ""),
