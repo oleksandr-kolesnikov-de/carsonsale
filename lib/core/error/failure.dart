@@ -25,6 +25,10 @@ class SharedPreferencesFailure extends LocalFailure {
   const SharedPreferencesFailure({super.message});
 }
 
+class HiveFailure extends LocalFailure {
+  const HiveFailure({super.message});
+}
+
 class ServerFailure extends RemoteFailure {
   const ServerFailure({super.message});
 }
