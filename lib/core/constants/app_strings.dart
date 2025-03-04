@@ -25,5 +25,12 @@ class AppStrings {
   static const String errorUnknown = 'Unknown error';
   static const String errorMaxRetries = 'Server error. Max number of retry attempt was reached';
   static const String errorTitle = 'An error occurred while processing your request: ';
+
+  // Debug messages
+  static const String debugCacheFailurePrefix = 'Cache Failure: ';
+  static const String debugCacheParseError = 'Cache Error: Failed to parse data';
+  static const String debugCacheHit = 'Cache Hit: Returning Cached Data';
+  static const String debugStatusCode = 'Status code: ';
+  static const String debugBody = 'Body: ';
 }
 
