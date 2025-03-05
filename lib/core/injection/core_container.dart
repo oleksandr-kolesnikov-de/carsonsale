@@ -17,6 +17,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../features/home/data/datasources/exchange_car_local_hive_impl.dart';
 import '../../mock/server.dart';
 import '../config/config.dart';
+import '../router/guards/auth_guard.dart';
+import '../router/router.dart';
 import '../utils/utils.dart';
 
 final core = GetIt.instance;
@@ -33,13 +35,17 @@ Future<void> init() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   core.registerLazySingleton(() => sharedPreferences);
 
-  // hive
+  // Hive
   Hive.init(await Utils.getPath());
   if (Config.clearCacheAtStart) {
     var box = await Hive.openBox(Config.hiveBoxName);
     await box.clear();
     await box.close();
   }
+
+  // Router
+  core.registerLazySingleton(() => AppRouter());
+  core.registerLazySingleton(() => AuthGuard());
 
   // BLoC
 
