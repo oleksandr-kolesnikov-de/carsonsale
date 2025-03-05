@@ -3,6 +3,7 @@
 /*                                           © 2025                                              */
 /* ********************************************************************************************* */
 
+import 'package:auto_route/auto_route.dart';
 import 'package:carsonsale/core/styles/app_spacing.dart';
 import 'package:carsonsale/features/home/presentation/widgets/home_car_info_widget.dart';
 import 'package:carsonsale/features/home/presentation/widgets/home_car_selection_widget.dart';
@@ -14,6 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../bloc/home_bloc.dart';
 
+@RoutePage()
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
