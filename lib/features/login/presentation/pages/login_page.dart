@@ -4,6 +4,7 @@
 /* ********************************************************************************************* */
 
 import 'package:auto_route/auto_route.dart';
+import 'package:carsonsale/features/login/presentation/widgets/login_enter_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/app_strings.dart';
@@ -19,7 +20,12 @@ class LoginPage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(AppStrings.homeScreenTitle),
       ),
-      body: Center(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [LoginEnterBar()],
+        ),
+      ),
     );
   }
 }

@@ -3,21 +3,10 @@
 /*                                           © 2025                                              */
 /* ********************************************************************************************* */
 
-part of 'login_bloc.dart';
+import 'package:dartz/dartz.dart';
 
-abstract class LoginEvent extends Equatable {
-  const LoginEvent();
+import '../../../../core/error/failure.dart';
 
-  @override
-  List<Object> get props => [];
+abstract class LoginRepository {
+  Future<Either<Failure, bool>> saveUser(String userName);
 }
-
-class SaveUserEvent extends LoginEvent {
-  final String userName;
-  final Function onSuccess;
-
-  const SaveUserEvent({required this.userName, required this.onSuccess});
-
-  @override
-  List<Object> get props => [userName, onSuccess];
-} 

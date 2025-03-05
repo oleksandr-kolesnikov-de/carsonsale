@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/constants/app_strings.dart';
 import 'core/router/router.dart';
 import 'features/home/presentation/bloc/home_bloc.dart';
+import 'features/login/presentation/bloc/login_bloc.dart';
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 void main() async {
@@ -30,6 +31,9 @@ class CarsApp extends StatelessWidget {
       providers: [
         BlocProvider<HomeBloc>(
           create: (BuildContext context) => core<HomeBloc>(),
+        ),
+        BlocProvider<LoginBloc>(
+          create: (BuildContext context) => core<LoginBloc>(),
         ),
       ],
       child: MaterialApp.router(
