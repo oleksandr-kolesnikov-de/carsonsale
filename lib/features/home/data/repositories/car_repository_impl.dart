@@ -27,15 +27,14 @@ class CarRepositoryImpl implements CarRepository {
           if (response["statusCode"] == 200) {
             final carData = response["data"];
             final carInfoModel = CarInfoModel.fromMap(carData);
-            final carInfoEntity = carInfoModel.toEntity();
-            final result = Some(carInfoEntity);
+            final result = Some(carInfoModel);
             return Right(result);
           } else if (response["statusCode"] == 300) {
             final carDataList = response["data"] as List;
             final carShortInfoModelList =
                 carDataList.map((carData) {
                   final carShortInfoModel = CarShortInfoModel.fromMap(carData);
-                  return carShortInfoModel.toEntity();
+                  return carShortInfoModel;
                 }).toList();
             final carList = carShortInfoModelList;
             return Right(Some(carList));

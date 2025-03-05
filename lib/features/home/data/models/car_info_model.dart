@@ -5,37 +5,22 @@
 
 import '../../domain/entities/car_info.dart';
 
-class CarInfoModel {
-  final String make;
-  final String model;
-  final String externalId;
-  final String feedback;
-  final DateTime valuatedAt;
-  final DateTime requestedAt;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final double price;
-  final bool positiveCustomerFeedback;
-  final String fkUuidAuction;
-  final String origin;
-  final String estimationRequestId;
-  final String fkSellerUser; // New field for _fk_sellerUser
-
+class CarInfoModel extends CarInfo {
   CarInfoModel({
-    required this.make,
-    required this.model,
-    required this.externalId,
-    required this.feedback,
-    required this.valuatedAt,
-    required this.requestedAt,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.price,
-    required this.positiveCustomerFeedback,
-    required this.fkUuidAuction,
-    required this.origin,
-    required this.estimationRequestId,
-    required this.fkSellerUser, // New required field
+    required super.make,
+    required super.model,
+    required super.externalId,
+    required super.feedback,
+    required super.valuatedAt,
+    required super.requestedAt,
+    required super.createdAt,
+    required super.updatedAt,
+    required super.price,
+    required super.positiveCustomerFeedback,
+    required super.fkUuidAuction,
+    required super.origin,
+    required super.estimationRequestId,
+    required super.fkSellerUser,
   });
 
   factory CarInfoModel.fromMap(Map<String, dynamic> map) {
@@ -72,7 +57,7 @@ class CarInfoModel {
       'fkUuidAuction': fkUuidAuction,
       'origin': origin,
       'estimationRequestId': estimationRequestId,
-      '_fk_sellerUser': fkSellerUser, // Include the new field when converting to map
+      '_fk_sellerUser': fkSellerUser, 
     };
   }
 
@@ -91,6 +76,7 @@ class CarInfoModel {
       fkUuidAuction: fkUuidAuction,
       origin: origin,
       estimationRequestId: estimationRequestId,
+      fkSellerUser: fkSellerUser, 
     );
   }
 }
