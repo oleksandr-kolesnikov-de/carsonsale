@@ -3,10 +3,8 @@
 /*                                           © 2025                                              */
 /* ********************************************************************************************* */
 
-import 'package:dartz/dartz.dart';
-
-import '../../../../core/error/failure.dart';
+import 'package:carsonsale/features/home/domain/entities/car_search_result.dart';
 
 abstract class CarRepository {
-  Future<Either<Failure, Option>> searchCar(String searchQuery);
+  Future<CarSearchResult> searchCar(String searchQuery);
 }

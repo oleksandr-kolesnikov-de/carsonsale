@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../domain/entities/car_info.dart';
+import '../../domain/entities/car_search_result.dart';
 import '../../domain/entities/car_short_info.dart';
 
 part 'home_event.dart';
@@ -20,25 +21,17 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this.searchCar) : super(HomeInitial()) {
     on<HomeSearchCarsEvent>((event, emit) async {
       emit(HomeLoading());
-      final result = await searchCar(SearchCarParams(searchQuery: event.query));
-      result.fold((failure) => emit(HomeError(failure: failure)), (
-        responseOption,
-      ) {
-        responseOption.fold(
-          () {
-            emit(HomeInitial());
-          },
-          (response) {
-            if (response is CarInfo) {
-              emit(HomeLoaded(carInfo: response));
-            } else if (response is List<CarShortInfo>) {
-              emit(HomeLoadedList(carShortInfoList: response));
-            } else {
-              emit(HomeInitial());
-            }
-          },
-        );
-      });
+      final CarSearchResult result = await searchCar(
+        SearchCarParams(searchQuery: event.query),
+      );
+      switch (result) {
+        case CarFailureResult():
+          emit(HomeError(failure: result.failure));
+        case CarInfoResult():
+          emit(HomeLoaded(carInfo: result.carInfo));
+        case CarListResult():
+          emit(HomeLoadedList(carShortInfoList: result.carList));
+      }
     });
   }
 }

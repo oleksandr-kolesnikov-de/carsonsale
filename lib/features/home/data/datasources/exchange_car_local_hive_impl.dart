@@ -23,6 +23,7 @@ class ExchangeCarLocalHiveImpl extends ExchangeCarLocal {
     try {
       var box = await Hive.openBox<Map>(Config.hiveBoxName);
       await box.put(query, car);
+      await box.close();
     } catch (e) {
       return Left(HiveFailure(message: e.toString()));
     }
@@ -36,6 +37,7 @@ class ExchangeCarLocalHiveImpl extends ExchangeCarLocal {
     try {
       var box = await Hive.openBox<Map>(Config.hiveBoxName);
       var car = box.get(query);
+      await box.close();
       if (car == null) {
         return Right(None());
       }
