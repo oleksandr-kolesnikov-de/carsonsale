@@ -3,13 +3,19 @@
 /*                                          © 2025                                               */
 /* ********************************************************************************************* */
 
-class Config {
-  // Retry policy
-  static const int maxRetries = 3;
-  static const Duration retryDelay = Duration(seconds: 2);
-  // Hive configuration
-  static const String hiveBoxName = 'cache';
-  // Server response configuration
-  static String statusCodeKey = 'statusCode';
-  static String dataKey = 'data';
+import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
+
+class Utils {
+  static Future<String> getPath() async {
+    String path;
+    if (kIsWeb) {
+      path = "/assets/db";
+      return path;
+    } else {
+      var dir = await getApplicationDocumentsDirectory();
+      path = dir.path;
+      return path;
+    }
+  }
 }
