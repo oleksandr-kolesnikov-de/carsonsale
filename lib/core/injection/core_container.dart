@@ -10,11 +10,17 @@ import 'package:carsonsale/features/home/data/repositories/car_repository_impl.d
 import 'package:carsonsale/features/home/domain/repositories/car_repository.dart';
 import 'package:carsonsale/features/home/domain/usecases/search_car.dart';
 import 'package:carsonsale/features/home/presentation/bloc/home_bloc.dart';
+import 'package:carsonsale/features/login/data/datasources/exchange_local_prefs_impl.dart';
+import 'package:carsonsale/features/login/data/datasources/exchange_user_local.dart';
+import 'package:carsonsale/features/login/domain/repositories/login_repository.dart';
+import 'package:carsonsale/features/login/presentation/bloc/login_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/home/data/datasources/exchange_car_local_hive_impl.dart';
+import '../../features/login/data/repositories/login_repository_impl.dart';
+import '../../features/login/domain/usecases/save_user.dart';
 import '../../mock/server.dart';
 import '../config/config.dart';
 import '../router/guards/auth_guard.dart';
@@ -50,14 +56,20 @@ Future<void> init() async {
   // BLoC
 
   core.registerFactory(() => HomeBloc(core()));
+  core.registerFactory(() => LoginBloc(core()));
 
   // UseCases
   core.registerLazySingleton(() => SearchCar(core()));
+  core.registerLazySingleton(() => SaveUser(core()));
 
   // Repository
   core.registerLazySingleton<CarRepository>(
     () => CarRepositoryImpl(core(), core()),
   );
+  core.registerLazySingleton<LoginRepository>(
+    () => LoginRepositoryImpl(core()),
+  );
+
   // DataSources
   core.registerLazySingleton<ExchangeCarLocal>(
     () => ExchangeCarLocalHiveImpl(),
@@ -67,4 +79,7 @@ Future<void> init() async {
   );
   core.registerLazySingleton(() => ExchangeCarRemoteMockImpl(core()));
   core.registerLazySingleton(() => ExchangeCarLocalHiveImpl());
+  core.registerLazySingleton<ExchangeUserLocal>(
+    () => ExchangeLocalPrefsImpl(core()),
+  );
 }
