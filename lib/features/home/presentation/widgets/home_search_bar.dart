@@ -12,8 +12,27 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/styles/app_spacing.dart';
 
-class HomeSearchBar extends StatelessWidget {
+class HomeSearchBar extends StatefulWidget {
   const HomeSearchBar({super.key});
+
+  @override
+  State<HomeSearchBar> createState() => _HomeSearchBarState();
+}
+
+class _HomeSearchBarState extends State<HomeSearchBar> {
+  late TextEditingController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +44,7 @@ class HomeSearchBar extends StatelessWidget {
           // Search Input Field
           Expanded(
             child: TextField(
+              controller: controller,
               decoration: InputDecoration(
                 hintText: AppStrings.homeSearchHint,
                 prefixIcon: Icon(Icons.search, color: theme.iconTheme.color),
@@ -39,7 +59,7 @@ class HomeSearchBar extends StatelessWidget {
           // Search Button
           ElevatedButton(
             onPressed: () {
-              context.read<HomeBloc>().add(const HomeSearchCarsEvent(""));
+              context.read<HomeBloc>().add(HomeSearchCarsEvent(controller.text));
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.primaryColor,

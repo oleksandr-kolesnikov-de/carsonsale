@@ -1,23 +1,42 @@
-/* ********************************************************************************************* */
-/*                                   Oleksandr Kolesnikov                                        */
-/*                                          © 2025                                               */
-/* ********************************************************************************************* */
-
 import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
+  final String? message;
+
+  const Failure({this.message});
+  
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [message];
 }
 
-class LocalFailure extends Failure {}
+class LocalFailure extends Failure {
+  const LocalFailure({super.message});
+}
 
-class RemoteFailure extends Failure {}
+class RemoteFailure extends Failure {
+  const RemoteFailure({super.message});
+}
 
-class DecodeFailure extends Failure {}
+class DecodeFailure extends Failure {
+  const DecodeFailure({super.message});
+}
 
-class SharedPreferencesFailure extends LocalFailure {}
+class SharedPreferencesFailure extends LocalFailure {
+  const SharedPreferencesFailure({super.message});
+}
 
-class ServerFailure extends RemoteFailure {}
+class ServerFailure extends RemoteFailure {
+  const ServerFailure({super.message});
+}
 
+class TimeoutFailure extends RemoteFailure {
+  const TimeoutFailure({super.message});
+}
 
+class AuthFailure extends RemoteFailure {
+  const AuthFailure({super.message});
+}
+
+class UnknownFailure extends RemoteFailure {
+  const UnknownFailure({super.message});
+}

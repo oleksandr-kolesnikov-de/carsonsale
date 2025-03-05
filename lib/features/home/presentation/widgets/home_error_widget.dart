@@ -15,11 +15,7 @@ class HomeErrorWidget extends StatelessWidget {
   final String errorMessage;
   final VoidCallback? onRetry;
 
-  const HomeErrorWidget({
-    super.key,
-    required this.errorMessage,
-    this.onRetry,
-  });
+  const HomeErrorWidget({super.key, required this.errorMessage, this.onRetry});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +56,7 @@ class HomeErrorWidget extends StatelessWidget {
               ElevatedButton(
                 onPressed: onRetry,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:theme.colorScheme.onError,
+                  backgroundColor: theme.colorScheme.onError,
                   shape: RoundedRectangleBorder(
                     borderRadius: AppBorderRadius.roundedMedium,
                   ),
