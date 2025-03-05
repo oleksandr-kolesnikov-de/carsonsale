@@ -3,20 +3,10 @@
 /*                                           © 2025                                              */
 /* ********************************************************************************************* */
 
-part of 'home_bloc.dart';
+import 'package:dartz/dartz.dart';
 
-abstract class HomeEvent extends Equatable {
-  const HomeEvent();
+import '../../../../core/error/failure.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-class HomeSearchCarsEvent extends HomeEvent {
-  final String query;
-
-  const HomeSearchCarsEvent(this.query);
-
-  @override
-  List<Object> get props => [query];
+abstract class ExchangeCarRemote {
+  Future<Either<Failure, Map<String, dynamic>>> searchCar(String searchQuery);
 }

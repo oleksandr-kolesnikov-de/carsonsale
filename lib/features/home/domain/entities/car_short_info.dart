@@ -3,20 +3,17 @@
 /*                                           © 2025                                              */
 /* ********************************************************************************************* */
 
-part of 'home_bloc.dart';
+import 'base_car.dart';
 
-abstract class HomeEvent extends Equatable {
-  const HomeEvent();
+class CarShortInfo extends BaseCarInfo {
+  final String containerName;
+  final int similarity;
 
-  @override
-  List<Object> get props => [];
-}
-
-class HomeSearchCarsEvent extends HomeEvent {
-  final String query;
-
-  const HomeSearchCarsEvent(this.query);
-
-  @override
-  List<Object> get props => [query];
+  CarShortInfo({
+    required super.make,
+    required super.model,
+    required super.externalId,
+    required this.containerName,
+    required this.similarity,
+  });
 }
