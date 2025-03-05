@@ -13,4 +13,6 @@ class Config {
   // Server response configuration
   static String statusCodeKey = 'statusCode';
   static String dataKey = 'data';
+  // SharedPreferences configuration
+  static const String sharedPrefsUserNameKey = 'user_name';
 }
