@@ -26,11 +26,16 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: GestureDetector(
           onDoubleTap: () {
             context.read<LoginBloc>().add(ClearUserEvent());
-            context.router.replace(const LoginRoute());
+            if (context.router.canNavigateBack) {
+              context.router.pop();
+            } else {
+              context.router.replace(LoginRoute());
+            }
           },
           child: Text(AppStrings.homeScreenTitle),
         ),
