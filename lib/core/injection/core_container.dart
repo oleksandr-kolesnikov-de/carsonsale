@@ -56,7 +56,7 @@ Future<void> init() async {
 
   // BLoC
 
-  core.registerFactory(() => HomeBloc(core()));
+  core.registerFactory(() => HomeBloc(core(), core()));
   core.registerFactory(() => LoginBloc(core()));
 
   // UseCases

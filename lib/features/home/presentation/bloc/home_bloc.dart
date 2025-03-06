@@ -3,7 +3,9 @@
 /*                                           © 2025                                              */
 /* ********************************************************************************************* */
 
+import 'package:carsonsale/core/use_case/no_params.dart';
 import 'package:carsonsale/features/home/domain/usecases/search_car.dart';
+import 'package:carsonsale/features/login/domain/usecases/load_user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,8 +19,13 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final SearchCar searchCar;
+  final LoadUser loadUser;
+  HomeBloc(this.searchCar, this.loadUser) : super(HomeInitial("")) {
+    on<HomeInitializeEvent>((event, emit) async {
+      final result = await loadUser(NoParams());
+      result.fold((failure) => {}, (userName) => emit(HomeInitial(userName)));
+    });
 
-  HomeBloc(this.searchCar) : super(HomeInitial("")) {
     on<HomeSearchCarsEvent>((event, emit) async {
       emit(HomeLoading(state.userName));
       final CarSearchResult result = await searchCar(

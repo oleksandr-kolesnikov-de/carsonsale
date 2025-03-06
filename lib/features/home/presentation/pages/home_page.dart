@@ -38,21 +38,25 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: BlocProvider<HomeBloc>(
-        create: (BuildContext context) => core<HomeBloc>(),
+        create:
+            (BuildContext context) =>
+                core<HomeBloc>()..add(HomeInitializeEvent()),
         child: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) {
             return Center(
               child: ListView(
                 children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(AppSpacing.medium),
+                    child: Text(AppStrings.homeProfileString + state.userName),
+                  ),
                   HomeSearchBar(isLoading: state is HomeLoading),
                   if (state is HomeLoading)
                     Center(child: CircularProgressIndicator()),
                   if (state is HomeInitial)
                     Padding(
                       padding: const EdgeInsets.all(AppSpacing.medium),
-                      child: Text(
-                        AppStrings.homeStartString,
-                      ),
+                      child: Text(AppStrings.homeStartString),
                     ),
                   if (state is HomeLoaded)
                     HomeCarInfoWidget(
