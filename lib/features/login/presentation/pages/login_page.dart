@@ -17,13 +17,11 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(AppStrings.homeScreenTitle),
+        title: Text(AppStrings.loginScreenTitle),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [LoginEnterBar()],
-      ),
+      body: LoginEnterBar(),
     );
   }
 }

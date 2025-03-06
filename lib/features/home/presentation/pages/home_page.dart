@@ -28,16 +28,22 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: GestureDetector(
-          onDoubleTap: () {
-            context.read<LoginBloc>().add(ClearUserEvent());
-            if (context.router.canNavigateBack) {
-              context.router.pop();
-            } else {
-              context.router.replace(LoginRoute());
-            }
-          },
-          child: Text(AppStrings.homeScreenTitle),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(AppStrings.homeScreenTitle),
+            IconButton(
+              onPressed: () {
+                context.read<LoginBloc>().add(ClearUserEvent());
+                if (context.router.canNavigateBack) {
+                  context.router.pop();
+                } else {
+                  context.router.replace(LoginRoute());
+                }
+              },
+              icon: Icon(Icons.exit_to_app),
+            ),
+          ],
         ),
       ),
       body: BlocProvider<HomeBloc>(
