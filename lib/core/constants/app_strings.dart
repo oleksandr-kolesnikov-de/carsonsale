@@ -10,7 +10,7 @@ class AppStrings {
   // Login
   
   // Home screen
-  static const String homeScreenTitle = 'CarOnSale Flutter Coding Challenge';
+  static const String homeScreenTitle = 'Challenge: home';
   static const String homeSearchHint = 'Enter VIN code';
   static const String homeSearchButton = 'Search';
   static const String homeCarModel = 'Model';
@@ -19,9 +19,11 @@ class AppStrings {
   static const String homeFeedbackNegative = 'Not recommended by other users';
   static const String homeVehicleSelectionTitle = 'Search results';
   static const String homeErrorRetry = 'Retry';
-  static const String homeStartString = "Please enter a search query";
+  static const String homeStartString = "No search results yet. Please enter a VIN code and press 'Search'";
+  static const String homeProfileString = 'Logged in as: ';
 
   // Login screen
+  static const String loginScreenTitle = 'Challenge: login';
   static const String loginUserHint = 'Enter your name';
   // Error messages
   static const String errorUnknown = 'Unknown error';

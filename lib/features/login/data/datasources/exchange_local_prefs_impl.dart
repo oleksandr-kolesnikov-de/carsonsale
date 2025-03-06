@@ -26,4 +26,28 @@ class ExchangeLocalPrefsImpl extends ExchangeUserLocal {
       return Left(SharedPreferencesFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, String>> loadUser() async {
+    try {
+      final user = sharedPreferences.getString(Config.sharedPrefsUserNameKey);
+      if (user != null) {
+        return Right(user);
+      } else {
+        return Left(SharedPreferencesFailure());
+      }
+    } catch (e) {
+      return Left(SharedPreferencesFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> clearUser() async {
+    try {
+      await sharedPreferences.remove(Config.sharedPrefsUserNameKey);
+      return Right(true);
+    } catch (e) {
+      return Left(SharedPreferencesFailure());
+    }
+  }
 }

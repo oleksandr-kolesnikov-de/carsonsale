@@ -20,3 +20,5 @@ class HomeSearchCarsEvent extends HomeEvent {
   @override
   List<Object> get props => [query];
 }
+
+class HomeInitializeEvent extends HomeEvent {}
