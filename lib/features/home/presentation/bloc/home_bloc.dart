@@ -18,19 +18,21 @@ part 'home_state.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final SearchCar searchCar;
 
-  HomeBloc(this.searchCar) : super(HomeInitial()) {
+  HomeBloc(this.searchCar) : super(HomeInitial("")) {
     on<HomeSearchCarsEvent>((event, emit) async {
-      emit(HomeLoading());
+      emit(HomeLoading(state.userName));
       final CarSearchResult result = await searchCar(
         SearchCarParams(searchQuery: event.query),
       );
       switch (result) {
         case CarFailureResult():
-          emit(HomeError(failure: result.failure));
+          emit(HomeError(state.userName, failure: result.failure));
         case CarInfoResult():
-          emit(HomeLoaded(carInfo: result.carInfo));
+          emit(HomeLoaded(state.userName, carInfo: result.carInfo));
         case CarListResult():
-          emit(HomeLoadedList(carShortInfoList: result.carList));
+          emit(
+            HomeLoadedList(state.userName, carShortInfoList: result.carList),
+          );
       }
     });
   }

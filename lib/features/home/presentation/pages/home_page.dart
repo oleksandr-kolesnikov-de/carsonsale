@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../core/config/config.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/injection/core_container.dart';
 import '../../../../core/router/router.dart';
@@ -38,46 +37,46 @@ class HomePage extends StatelessWidget {
           child: Text(AppStrings.homeScreenTitle),
         ),
       ),
-      body: BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, state) {
-          // Fetch name *************
-          final userName = core<SharedPreferences>().getString(Config.sharedPrefsUserNameKey);
-          // ************************
-          return Center(
-            child: ListView(
-              children: <Widget>[
-                HomeSearchBar(isLoading: state is HomeLoading),
-                if (state is HomeLoading)
-                  Center(child: CircularProgressIndicator()),
-                if (state is HomeInitial)
-                  Padding(
-                    padding: const EdgeInsets.all(AppSpacing.medium),
-                    child: Text(
-                      "${AppStrings.homeStartString}, ${userName ?? ""}",
+      body: BlocProvider<HomeBloc>(
+        create: (BuildContext context) => core<HomeBloc>(),
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            return Center(
+              child: ListView(
+                children: <Widget>[
+                  HomeSearchBar(isLoading: state is HomeLoading),
+                  if (state is HomeLoading)
+                    Center(child: CircularProgressIndicator()),
+                  if (state is HomeInitial)
+                    Padding(
+                      padding: const EdgeInsets.all(AppSpacing.medium),
+                      child: Text(
+                        AppStrings.homeStartString,
+                      ),
                     ),
-                  ),
-                if (state is HomeLoaded)
-                  HomeCarInfoWidget(
-                    price: state.carInfo.price,
-                    model: state.carInfo.model,
-                    uuid: state.carInfo.externalId,
-                    feedback: state.carInfo.positiveCustomerFeedback,
-                  ),
-                if (state is HomeLoadedList)
-                  HomeCarSelectionWidget(
-                    carNames: [
-                      for (var car in state.carShortInfoList) car.model,
-                    ],
-                    similarityScores: [
-                      for (var car in state.carShortInfoList) car.similarity,
-                    ],
-                  ),
-                if (state is HomeError)
-                  HomeErrorWidget(errorMessage: state.failure.message ?? ""),
-              ],
-            ),
-          );
-        },
+                  if (state is HomeLoaded)
+                    HomeCarInfoWidget(
+                      price: state.carInfo.price,
+                      model: state.carInfo.model,
+                      uuid: state.carInfo.externalId,
+                      feedback: state.carInfo.positiveCustomerFeedback,
+                    ),
+                  if (state is HomeLoadedList)
+                    HomeCarSelectionWidget(
+                      carNames: [
+                        for (var car in state.carShortInfoList) car.model,
+                      ],
+                      similarityScores: [
+                        for (var car in state.carShortInfoList) car.similarity,
+                      ],
+                    ),
+                  if (state is HomeError)
+                    HomeErrorWidget(errorMessage: state.failure.message ?? ""),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
