@@ -20,6 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/home/data/datasources/exchange_car_local_hive_impl.dart';
 import '../../features/login/data/repositories/login_repository_impl.dart';
+import '../../features/login/domain/usecases/load_user.dart';
 import '../../features/login/domain/usecases/save_user.dart';
 import '../../mock/server.dart';
 import '../config/config.dart';
@@ -61,6 +62,7 @@ Future<void> init() async {
   // UseCases
   core.registerLazySingleton(() => SearchCar(core()));
   core.registerLazySingleton(() => SaveUser(core()));
+  core.registerLazySingleton(() => LoadUser(core()));
 
   // Repository
   core.registerLazySingleton<CarRepository>(
