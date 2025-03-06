@@ -31,4 +31,13 @@ class LoginRepositoryImpl implements LoginRepository {
       (response) => Right(response),
     );
   }
+
+  @override
+  Future<Either<Failure, bool>> clearUser() async {
+    final response = await exchangeLocal.clearUser();
+    return response.fold(
+      (failure) => Left(failure),
+      (response) => Right(response),
+    );
+  }
 }

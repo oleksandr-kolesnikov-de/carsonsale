@@ -11,11 +11,11 @@ import 'package:carsonsale/features/home/presentation/widgets/home_error_widget.
 import 'package:carsonsale/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/injection/core_container.dart';
 import '../../../../core/router/router.dart';
+import '../../../login/presentation/bloc/login_bloc.dart';
 import '../bloc/home_bloc.dart';
 
 @RoutePage()
@@ -29,10 +29,8 @@ class HomePage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: GestureDetector(
           onDoubleTap: () {
-            // Clear shared preferences and navigate to login screen
-            core<SharedPreferences>().clear();
+            context.read<LoginBloc>().add(ClearUserEvent());
             context.router.replace(const LoginRoute());
-            // ************************
           },
           child: Text(AppStrings.homeScreenTitle),
         ),

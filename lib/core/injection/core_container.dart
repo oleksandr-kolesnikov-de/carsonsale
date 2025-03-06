@@ -20,6 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/home/data/datasources/exchange_car_local_hive_impl.dart';
 import '../../features/login/data/repositories/login_repository_impl.dart';
+import '../../features/login/domain/usecases/clear_user.dart';
 import '../../features/login/domain/usecases/load_user.dart';
 import '../../features/login/domain/usecases/save_user.dart';
 import '../../mock/server.dart';
@@ -57,12 +58,13 @@ Future<void> init() async {
   // BLoC
 
   core.registerFactory(() => HomeBloc(core(), core()));
-  core.registerFactory(() => LoginBloc(core()));
+  core.registerFactory(() => LoginBloc(core(), core()));
 
   // UseCases
   core.registerLazySingleton(() => SearchCar(core()));
   core.registerLazySingleton(() => SaveUser(core()));
   core.registerLazySingleton(() => LoadUser(core()));
+  core.registerLazySingleton(() => ClearUser(core()));
 
   // Repository
   core.registerLazySingleton<CarRepository>(

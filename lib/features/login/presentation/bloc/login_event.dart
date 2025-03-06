@@ -20,4 +20,6 @@ class SaveUserEvent extends LoginEvent {
 
   @override
   List<Object> get props => [userName, onSuccess];
-} 
+}
+
+class ClearUserEvent extends LoginEvent {}
