@@ -27,6 +27,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
 
     on<HomeSearchCarsEvent>((event, emit) async {
+      if (event.query.isEmpty) {
+        emit(HomeInitial(state.userName));
+        return;
+      }
       emit(HomeLoading(state.userName));
       final CarSearchResult result = await searchCar(
         SearchCarParams(searchQuery: event.query),
